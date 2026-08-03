@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #e6efe9;
+    background-image: url('https://www.transparenttextures.com/patterns/leaves.png');
+    color: #4a4a4a;
+    margin: 0;
+    padding: 40px 20px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #97f4de;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.btn-tambah, .btn-edit, .btn-hapus, button[type="submit"] {
+    display: inline-block;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-tambah {
+    background-color: #0af3bc;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.btn-tambah:hover {
+    background-color: #32695d;
+}
+
+.btn-edit {
+    background-color: #8fa69c;
+    color: #ffffff;
+}
+
+.btn-edit:hover {
+    background-color: #71877d;
+}
+
+.btn-hapus {
+    background-color: #b0b0b0;
+    color: #ffffff;
+}
+
+.btn-hapus:hover {
+    background-color: #909090;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table th {
+    background-color: #f2f7f5;
+    color: #438a7a;
+    font-weight: 600;
+}
+
+.data-table tr:hover {
+    background-color: #f9fbfb;
+}
+
+.data-table td .btn-edit, .data-table td .btn-hapus {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.form-crud {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #438a7a;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccd6d1;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #438a7a;
+}
