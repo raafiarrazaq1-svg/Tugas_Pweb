@@ -1,5 +1,10 @@
-<?php
-include "koneksi.php";
+<?php 
+session_start();
+if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
+    header("Location: login.php?pesan=belum_login");
+    exit;
+}
+include 'koneksi.php'; 
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,6 +68,13 @@ button{
     border-radius:4px;
     cursor:pointer;
 }
+.logout{
+    float: right;
+    background-color: #438a7a;
+    background: ;
+    color: white;
+    margin: 20px 30px 0 0;
+}
 button:hover{
     background:#000;
 }
@@ -92,6 +104,7 @@ a:hover{
 </style>
 </head>
 <body>
+    <a href="logout.php" class="logout">Logout</a>
     <h2 align="center" style="color:black">INPUT DATA SISWA</h2>
     <form action="simpan.php" method="POST">    
     <table>
