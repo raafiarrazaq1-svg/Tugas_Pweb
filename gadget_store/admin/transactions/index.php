@@ -1,0 +1,535 @@
+<?php
+
+require_once "../../includes/admin_auth.php";
+require_once "../../config/database.php";
+
+$query = "SELECT
+            transactions.*,
+            customers.name AS customer_name,
+            users.name AS user_name
+          FROM transactions
+          INNER JOIN customers
+            ON transactions.customer_id = customers.id
+          INNER JOIN users
+            ON transactions.user_id = users.id
+          ORDER BY transactions.id DESC";
+
+$result = mysqli_query($conn, $query);
+
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Transaksi - Gadget Store
+    </title>
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <div class="logo-mark"></div>
+
+            <span>
+                Gadget Store
+            </span>
+
+        </div>
+
+
+        <div class="nav-title">
+            Main Menu
+        </div>
+
+
+        <a
+            href="../dashboard.php"
+            class="nav-link"
+        >
+            Dashboard
+        </a>
+
+
+        <a
+            href="../gadgets/index.php"
+            class="nav-link"
+        >
+            Data Gadget
+        </a>
+
+
+        <a
+            href="../categories/index.php"
+            class="nav-link"
+        >
+            Data Kategori
+        </a>
+
+
+        <a
+            href="../customers/index.php"
+            class="nav-link"
+        >
+            Data Pelanggan
+        </a>
+
+
+        <a
+            href="../users/index.php"
+            class="nav-link"
+        >
+            Data User
+        </a>
+
+
+        <div class="nav-title">
+            Transaksi
+        </div>
+
+
+        <a
+            href="index.php"
+            class="nav-link active"
+        >
+            Transaksi
+        </a>
+
+
+        <div class="nav-title">
+            Account
+        </div>
+
+
+        <a
+            href="../../auth/logout.php"
+            class="nav-link"
+        >
+            Logout
+        </a>
+
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+    <main class="main">
+
+
+        <!-- HEADER -->
+        <div class="topbar">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Data Transaksi
+                </h1>
+
+                <p class="page-subtitle">
+                    Kelola data transaksi pada Gadget Store
+                </p>
+
+            </div>
+
+
+            <div class="user-box">
+
+
+                <div class="avatar">
+
+                    <?php
+
+                    echo strtoupper(
+                        substr(
+                            $_SESSION['name'],
+                            0,
+                            1
+                        )
+                    );
+
+                    ?>
+
+                </div>
+
+
+                <div>
+
+                    <div class="user-name">
+
+                        <?php
+
+                        echo htmlspecialchars(
+                            $_SESSION['name']
+                        );
+
+                        ?>
+
+                    </div>
+
+
+                    <div class="user-role">
+
+                        <?php
+
+                        echo htmlspecialchars(
+                            $_SESSION['role']
+                        );
+
+                        ?>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             CONTENT
+             ================================================= -->
+        <div class="content-container">
+
+
+            <div class="data-card">
+
+
+                <!-- CARD HEADER -->
+                <div class="data-card-header">
+
+
+                    <div>
+
+                        <div class="data-card-title">
+                            Daftar Transaksi
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="tambah.php"
+                        class="btn btn-primary"
+                    >
+                        + Tambah Transaksi
+                    </a>
+
+
+                </div>
+
+
+                <!-- TABLE -->
+                <div class="data-card-content">
+
+
+                    <div class="table-wrapper">
+
+
+                        <table class="data-table">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        No
+                                    </th>
+
+                                    <th>
+                                        Kode Transaksi
+                                    </th>
+
+                                    <th>
+                                        Pelanggan
+                                    </th>
+
+                                    <th>
+                                        Petugas
+                                    </th>
+
+                                    <th>
+                                        Tanggal
+                                    </th>
+
+                                    <th>
+                                        Total
+                                    </th>
+
+                                    <th>
+                                        Pembayaran
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Aksi
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                            <?php
+
+                            $no = 1;
+
+                            while (
+                                $transaction =
+                                mysqli_fetch_assoc($result)
+                            ):
+
+                            ?>
+
+
+                                <tr>
+
+
+                                    <!-- NO -->
+                                    <td>
+
+                                        <?php
+                                        echo $no++;
+                                        ?>
+
+                                    </td>
+
+
+                                    <!-- KODE TRANSAKSI -->
+                                    <td>
+
+                                        <span class="data-name">
+
+                                            <?php
+
+                                            echo htmlspecialchars(
+                                                $transaction['transaction_code']
+                                            );
+
+                                            ?>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- PELANGGAN -->
+                                    <td>
+
+                                        <span class="data-secondary">
+
+                                            <?php
+
+                                            echo htmlspecialchars(
+                                                $transaction['customer_name']
+                                            );
+
+                                            ?>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- PETUGAS -->
+                                    <td>
+
+                                        <span class="data-secondary">
+
+                                            <?php
+
+                                            echo htmlspecialchars(
+                                                $transaction['user_name']
+                                            );
+
+                                            ?>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- TANGGAL -->
+                                    <td>
+
+                                        <?php
+
+                                        echo htmlspecialchars(
+                                            $transaction['transaction_date']
+                                        );
+
+                                        ?>
+
+                                    </td>
+
+
+                                    <!-- TOTAL -->
+                                    <td>
+
+                                        <span class="price">
+
+                                            Rp
+
+                                            <?php
+
+                                            echo number_format(
+                                                $transaction['total'],
+                                                0,
+                                                ',',
+                                                '.'
+                                            );
+
+                                            ?>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- PEMBAYARAN -->
+                                    <td>
+
+                                        <span class="data-secondary">
+
+                                            <?php
+
+                                            echo htmlspecialchars(
+                                                $transaction['payment_status']
+                                            );
+
+                                            ?>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+                                    <td>
+
+                                        <span class="data-secondary">
+
+                                            <?php
+
+                                            echo htmlspecialchars(
+                                                $transaction['transaction_status']
+                                            );
+
+                                            ?>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- AKSI -->
+                                    <td>
+
+
+                                        <div class="table-actions">
+
+
+                                            <a
+                                                href="detail.php?id=<?php echo $transaction['id']; ?>"
+                                                class="btn action-edit"
+                                            >
+                                                Detail
+                                            </a>
+
+
+                                            <?php
+                                            if (
+                                                $transaction['transaction_status']
+                                                === 'berjalan'
+                                            ):
+                                            ?>
+
+
+                                                <a
+                                                    href="selesai.php?id=<?php echo $transaction['id']; ?>"
+                                                    class="btn action-delete"
+                                                >
+                                                    Selesaikan
+                                                </a>
+
+
+                                            <?php endif; ?>
+
+
+                                        </div>
+
+
+                                    </td>
+
+
+                                </tr>
+
+
+                            <?php endwhile; ?>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+</html>

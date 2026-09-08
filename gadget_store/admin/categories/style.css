@@ -1,0 +1,286 @@
+/* =========================
+   CATEGORY PAGE
+   Gadget Store
+========================= */
+
+:root {
+    --bg-main: #0b0f17;
+    --bg-card: #151c28;
+    --bg-secondary: #111722;
+    --border: #293446;
+    --border-light: #354158;
+
+    --text-main: #f5f7fa;
+    --text-secondary: #b7c0cf;
+    --text-muted: #7f8a9d;
+
+    --accent: #6c63ff;
+    --accent-hover: #8179ff;
+
+    --danger: #ef6262;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    min-height: 100vh;
+    padding: 40px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(108, 99, 255, 0.12),
+            transparent 30%
+        ),
+        var(--bg-main);
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1 {
+    margin-bottom: 6px;
+
+    color: #ffffff;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* Welcome text */
+p {
+    margin-bottom: 22px;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+body > a {
+    display: inline-flex;
+    align-items: center;
+
+    margin-right: 8px;
+    padding: 9px 14px;
+
+    color: #dfe3eb;
+    background: #242d3b;
+
+    border: 1px solid var(--border-light);
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+body > a:hover {
+    color: #ffffff;
+    background: var(--accent);
+    border-color: var(--accent);
+
+    transform: translateY(-1px);
+}
+
+/* Hilangkan karakter | agar tidak terlalu mengganggu */
+body {
+    font-size: 14px;
+}
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+
+table {
+    width: 100%;
+    margin-top: 22px;
+
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background: var(--bg-card);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+thead {
+    background: #111721;
+}
+
+thead th {
+    padding: 15px 18px;
+
+    color: var(--text-muted);
+    background: #111721;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: left;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   TABLE BODY
+========================= */
+
+tbody tr {
+    background: var(--bg-card);
+
+    transition: 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #1a2230;
+}
+
+tbody td {
+    padding: 16px 18px;
+
+    color: #c3cad5;
+
+    border-bottom: 1px solid #252e3e;
+
+    font-size: 13px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Kolom nomor */
+tbody td:first-child {
+    width: 80px;
+
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+/* Nama kategori */
+tbody td:nth-child(2) {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Kolom aksi */
+tbody td:last-child {
+    width: 180px;
+}
+
+/* =========================
+   TABLE ACTIONS - PLAIN
+========================= */
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Semua tombol aksi dibuat polos */
+.table-actions .btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: 0;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Edit */
+.table-actions .action-edit {
+    color: #b7c0cf;
+}
+
+.table-actions .action-edit:hover {
+    color: #ffffff;
+}
+
+/* Hapus */
+.table-actions .action-delete {
+    color: #b7c0cf;
+}
+
+.table-actions .action-delete:hover {
+    color: #ef6262;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 25px 18px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    body > a {
+        margin-bottom: 8px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    thead th,
+    tbody td {
+        padding: 13px 14px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    body {
+        padding: 20px 14px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    body > a {
+        padding: 8px 11px;
+        font-size: 11px;
+    }
+}
